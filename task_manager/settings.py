@@ -37,9 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'task_manager',
     'django_bootstrap5',
     'django_filters',
+    'task_manager',
+    'task_manager.users',
+    'task_manager.tasks',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +126,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Redirect after login
+LOGIN_REDIRECT_URL = '/'
+
+# Redicrect after logout
+LOGOUT_REDIRECT_URL = '/login/'
