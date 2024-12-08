@@ -31,7 +31,7 @@ class LabelCreateView(View):
         form = LabelForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('labels_index')
+            return redirect('labels')
 
         return render(request, 'labels/create.html', {'form': form})
 
@@ -54,7 +54,7 @@ class LabelUpdateView(View):
         form = LabelForm(request.POST, instance=label)
         if form.is_valid():
             form.save()
-            return redirect('labels_index')
+            return redirect('labels')
 
         return render(request, 'labels/update.html', {
             'form': form,
@@ -69,4 +69,4 @@ class LabelDeleteView(View):
         label = Label.objects.get(id=label_id)
         if label:
             label.delete()
-        return redirect('labels_index')
+        return redirect('labels')

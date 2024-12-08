@@ -31,7 +31,7 @@ class StatusCreateView(View):
         form = StatusForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('statuses_index')
+            return redirect('statuses')
 
         return render(request, 'statuses/create.html', {'form': form})
 
@@ -54,7 +54,7 @@ class StatusUpdateView(View):
         form = StatusForm(request.POST, instance=status)
         if form.is_valid():
             form.save()
-            return redirect('statuses_index')
+            return redirect('statuses')
 
         return render(request, 'statuses/update.html', {
             'form': form,
@@ -69,4 +69,4 @@ class StatusDeleteView(View):
         status = Status.objects.get(id=status_id)
         if status:
             status.delete()
-        return redirect('statuses_index')
+        return redirect('statuses')

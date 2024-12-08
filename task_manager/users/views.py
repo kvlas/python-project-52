@@ -31,7 +31,7 @@ class UserCreateView(View):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('users_index')
+            return redirect('users')
 
         return render(request, 'users/create.html', {'form': form})
 
@@ -54,7 +54,7 @@ class UserUpdateView(View):
         form = UserForm(request.POST, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('users_index')
+            return redirect('users')
 
         return render(request, 'users/update.html', {
             'form': form,
@@ -69,4 +69,4 @@ class UserDeleteView(View):
         user = User.objects.get(id=user_id)
         if user:
             user.delete()
-        return redirect('users_index')
+        return redirect('users')
