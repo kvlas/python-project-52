@@ -1,16 +1,23 @@
+import django_filters
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
 
 
+class TaskFilter(django_filters.FilterSet):
+    class Meta:
+        model = Task
+        fields = ['status', 'author', 'date_created'] 
+
 class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         tasks = Task.objects.all()
+        task_filter = TaskFilter(request.GET, queryset=Task.objects.all())
         return render(request, 'tasks/index.html', context={
-            'tasks': tasks,
-        })
+            'tasks': tasks, 'filter': task_filter
+            })
 
 
 class TaskView(View):

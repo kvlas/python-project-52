@@ -9,7 +9,7 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         labels = Label.objects.all()
         return render(request, 'labels/index.html', context={
-            'labels': labels,
+            'labels': labels, {'filter': task_filter}
         })
 
 
