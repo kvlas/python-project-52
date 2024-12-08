@@ -10,9 +10,9 @@ class Task(models.Model):
     date_created = models.DateTimeField(auto_now_add=True)
     executor = models.ForeignKey(User, on_delete=models.CASCADE,
                                  blank=True, null=True,
-                                 default='')
+                                 default='', related_name="task_executor")
     author = models.ForeignKey(User, on_delete=models.PROTECT,
-                               blank=False)
+                               blank=False, related_name="task_author")
     status = models.ForeignKey(Status, on_delete=models.PROTECT,
                                blank=False)
     labels = models.ManyToManyField(Label, through='Connection',
