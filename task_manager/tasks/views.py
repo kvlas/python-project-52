@@ -8,7 +8,7 @@ from task_manager.tasks.forms import TaskForm
 class TaskFilter(django_filters.FilterSet):
     class Meta:
         model = Task
-        fields = ['status', 'author', 'label'] 
+        fields = ['status', 'author'] 
 
 class IndexView(View):
 
