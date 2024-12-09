@@ -8,8 +8,10 @@ class IndexView(View):
 
     def get(self, request, *args, **kwargs):
         labels = Label.objects.all()
+        task_filter = None
         return render(request, 'labels/index.html', context={
-            'labels': labels, {'filter': task_filter}
+            'labels': labels,
+            'filter': task_filter
         })
 
 
