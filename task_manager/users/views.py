@@ -68,9 +68,13 @@ class UserUpdateView(View):
 
 class UserDeleteView(View):
 
+    # def get(self, request, *args, **kwargs):
+    #     user_id = kwargs.get('id')
+    #     user = get_object_or_404(User, id=user_id)
+    #     return render(request, 'users/delete.html', {'user': user})
+    
     def get(self, request, *args, **kwargs):
-        user_id = kwargs.get('id')
-        user = get_object_or_404(User, id=user_id)
+        user = get_object_or_404(User, pk=kwargs['pk'])
         return render(request, 'users/delete.html', {'user': user})
 
     def post(self, request, *args, **kwargs):
