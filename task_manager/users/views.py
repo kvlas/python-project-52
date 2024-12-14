@@ -71,6 +71,13 @@ class UserDeleteView(View):
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
-        if user:
-            user.delete()
-        return redirect('users')
+        form = UserForm(request.POST, instance=user)
+        if form.is_valid():
+            form.save()
+            return redirect('users')
+
+        return render(request, 'users/delete.html', {
+            'form': form,
+            'user_id': user_id
+            }
+        )
