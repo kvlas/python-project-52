@@ -40,13 +40,13 @@ class UserCreateView(View):
         return render(request, 'users/create.html', {'form': form})
     
 
+
 class UserUpdateView(View):
 
     def get(self, request, *args, **kwargs):
         user = get_object_or_404(User, pk=kwargs['pk'])
         form = UserForm(instance=user)
-        return render(request, 'users/create.html', {'form': form, 'user': user})
-
+        return render(request, 'users/update.html', {'form': form, 'user': user})
 
     def post(self, request, *args, **kwargs):
         user = get_object_or_404(User, pk=kwargs['pk'])
@@ -55,22 +55,7 @@ class UserUpdateView(View):
             form.save()
             messages.success(request, _('User details updated successfully'))
             return redirect('users')
-        return render(request, 'users/create.html', {'form': form, 'user': user})
-    
-class UserUpdateView(View):
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        form = UserForm(instance=user)
-        return render(request, 'users/create.html', {'form': form, 'user': user})
-
-    def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        form = UserForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('User details updated successfully'))
-            return redirect('users')
-        return render(request, 'users/create.html', {'form': form, 'user': user})
+        return render(request, 'users/update.html', {'form': form, 'user': user})
 
 class UserDeleteView(View):
   
