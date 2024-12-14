@@ -5,6 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.messages.views import SuccessMessageMixin
 
 class IndexView(View):
 
@@ -12,7 +13,7 @@ class IndexView(View):
         return render(request, 'index.html')
 
 
-class UserLoginView(LoginView):
+class UserLoginView(SuccessMessageMixin, LoginView):
     template_name = 'form.html'
     form_class = AuthenticationForm
     next_page = reverse_lazy('index')
@@ -23,7 +24,7 @@ class UserLoginView(LoginView):
     }
 
 
-class UserLogoutView(LogoutView):
+class UserLogoutView(SuccessMessageMixin, LogoutView):
     next_page = reverse_lazy('index')
     success_message = _('You are logged out')
 
