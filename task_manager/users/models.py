@@ -12,7 +12,6 @@ class User(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
 
     USERNAME_FIELD = 'identifier'
-    REQUIRED_FIELDS = ['identifier']
 
     def __str__(self):
         """Represent model object."""
