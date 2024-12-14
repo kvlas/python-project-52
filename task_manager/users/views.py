@@ -81,4 +81,4 @@ class UserDeleteView(View):
             messages.success(request, "User was successfully deleted.")
         except Exception as e:
             messages.error(request, f"An error occurred while deleting the user: {str(e)}")
-        return redirect(reverse_lazy('users'))
+        return redirect('users')
