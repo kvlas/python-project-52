@@ -3,13 +3,17 @@
 {% load django_bootstrap5 i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-{% block title %}Register{% endblock %}
+{% block title %}
+    {{ title }} | {% trans 'Task Manager' %}
+{% endblock %}
 
 {% block content %}
-  <h2>Регистрация</h2>
-  <form method="post">
+<h1 class="my-4">{{ title }}</h1>
+
+  <h2>{% trans 'Registration' %}</h2>
+  <form method="post" class="form">
     {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Регистрация</button>
+    {% bootstrap_form form %}
+    {% bootstrap_button button_text button_type="submit" button_class="btn btn-primary" %}
   </form>
 {% endblock %}
