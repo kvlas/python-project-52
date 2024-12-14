@@ -22,3 +22,6 @@ class User(AbstractBaseUser):
 
     def get_short_name(self):
         return self.first_name or self.identifier
+    
+    def get_by_natural_key(self, username):
+        return self.get(username=username)
