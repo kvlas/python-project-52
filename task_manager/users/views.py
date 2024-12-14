@@ -46,7 +46,7 @@ class UserUpdateView(View):
         user_id = kwargs.get('id')
         user = User.objects.get(id=user_id)
         form = UserForm(instance=user)
-        return render(request, 'users/update.html', {
+        return render(request, 'users/create.html', {
             'form': form,
             'user_id': user_id
             }
@@ -60,7 +60,7 @@ class UserUpdateView(View):
             form.save()
             return redirect('users')
 
-        return render(request, 'users/update.html', {
+        return render(request, 'users/create.html', {
             'form': form,
             'user_id': user_id
             }
