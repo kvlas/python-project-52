@@ -6,12 +6,11 @@ from django.contrib.auth.models import (
 
 class User(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
-    identifier = models.CharField(max_length=40, unique=True, null=True, blank=True)
     first_name = models.CharField(max_length=30, blank=True)
     last_name = models.CharField(max_length=30, blank=True)
     is_active = models.BooleanField(default=True)
 
-    USERNAME_FIELD = 'identifier'
+    USERNAME_FIELD = 'username'
 
     def __str__(self):
         """Represent model object."""
