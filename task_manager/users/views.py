@@ -1,7 +1,9 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from django.views import View
+from django.contrib import messages
 from task_manager.users.models import User
 from task_manager.users.forms import UserForm
+
 
 class IndexView(View):
 
@@ -31,10 +33,11 @@ class UserCreateView(View):
         form = UserForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('users')
+            messages.success(request, _('Пользователь успешно зарегистрирован'))
+            return redirect('login')
 
         return render(request, 'users/create.html', {'form': form})
-
+    
 
 class UserUpdateView(View):
 
