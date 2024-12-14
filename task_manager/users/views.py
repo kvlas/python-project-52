@@ -68,16 +68,17 @@ class UserUpdateView(View):
 
 class UserDeleteView(View):
 
+    def get(self, request, *args, **kwargs):
+        user_id = kwargs.get('id')
+        user = get_object_or_404(User, id=user_id)
+        return render(request, 'users/delete.html', {'user': user})
+
     def post(self, request, *args, **kwargs):
         user_id = kwargs.get('id')
-        user = User.objects.get(id=user_id)
-        form = UserForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            return redirect('users')
-
-        return render(request, 'users/delete.html', {
-            'form': form,
-            'user_id': user_id
-            }
-        )
+        user = get_object_or_404(User, id=user_id)
+        try:
+            user.delete()
+            messages.success(request, "User was successfully deleted.")
+        except Exception as e:
+            messages.error(request, f"An error occurred while deleting the user: {str(e)}")
+        return redirect(reverse_lazy('users'))
