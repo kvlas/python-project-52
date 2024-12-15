@@ -2,6 +2,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light ml-3">
+  <div class="container">
     <a class="navbar-brand" href="/">{% trans "Task Manager" %}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -41,18 +42,20 @@
               </form>
             </li>
             {% else %}
-            <li class="nav-item">
-              <form method="get" action="{% url 'create_user' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Register" %}</button>
-              </form>
-            </li>
 
             <li class="nav-item">
               <form method="get" action="{% url 'login' %}" style="display:inline;">
                   <button type="submit" class="nav-link btn btn-link m-1">{% trans "Login" %}</button>
               </form>
             </li>
+
+            <li class="nav-item">
+              <form method="get" action="{% url 'create_user' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Register" %}</button>
+              </form>
+            </li>
             {% endif %}
         </ul>
     </div>
+  </div>
 </nav>
