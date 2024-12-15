@@ -1,18 +1,21 @@
-install:
+install: 
 	poetry install
 
-dev:
-	poetry run flask --app page_analyzer:app run
+migrate:
+	poetry run python3 manage.py makemigrations
+	poetry run python3 manage.py migrate
+
+build: install migrate
 
 PORT ?= 8000
 start:
-	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) page_analyzer:app
-
-lint:
-	poetry run flake8 page_analyzer
+	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
 
 test:
-	poetry run pytest
+	poetry run python3 manage.py test
 
-test-coverage:
-	poetry run pytest --cov=page_analyzer --cov-report xml
+run:
+	poetry run python3 manage.py runserver 0:$(PORT)
+
+lint:
+	poetry run flake8 task_manager
