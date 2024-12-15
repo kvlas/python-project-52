@@ -7,12 +7,10 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="container wrapper flex-grow-1">
     <h1 class="my-4">{{ title }}</h1>
-</div>
-
-<div class="link m-3">
-    <a class="link-opacity-100" href="{% url 'create_status' %}">{% trans 'Create status' %}</a>
+    <a class="btn btn-primary mb-3" href="{% url 'create_status' %}">{% trans 'Create status' %}</a>
 </div>
 
     <table class="table table-striped m-3">
