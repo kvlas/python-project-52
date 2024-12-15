@@ -23,7 +23,10 @@
           <li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'tasks' %}">{% trans "Tasks" %}</a>
+            <form method="get" action="{% url 'tasks' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-link btn btn-link" style="display: inline; margin: 0; padding: 0;">{% trans "Tasks" %}</button>
+            </form>
           </li>
 
           <li class="nav-item">
