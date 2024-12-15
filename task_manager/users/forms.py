@@ -10,12 +10,6 @@ class UserForm(UserCreationForm):
     last_name = forms.CharField(
         max_length=150, required=True, label=_("Last name")
     )
-    username = forms.CharField(
-        max_length=150,
-        required=True,
-        label=_("Username"),
-        help_text=_("Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."),
-    )
 
     class Meta(UserCreationForm.Meta):
         model = User
