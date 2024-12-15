@@ -29,13 +29,12 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         'button_text': _('Register'),
     }
 
-
 class UserUpdateView(UserLoginRequiredMixin, SuccessMessageMixin,
                      UserPermissionMixin, UpdateView):
 
-    template_name = 'form.html'
     model = User
     form_class = UserForm
+    template_name = 'form.html'
     success_url = reverse_lazy('users')
     success_message = _('User is successfully updated')
     permission_message = _('You have no rights to change another user.')
