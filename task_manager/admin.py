@@ -12,5 +12,5 @@ admin.site.register(Label)
 
 
 @admin.register(User)
-class CustomUserAdmin(UserAdmin):
+class UserAdmin(UserAdmin):
     model = User
