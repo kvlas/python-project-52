@@ -1,8 +1,8 @@
 {% load django_bootstrap5 i18n %}
 {% get_current_language as LANGUAGE_CODE %}
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand ml-3" href="/">{% trans "Task Manager" %}</a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light ml-3">
+    <a class="navbar-brand" href="/">{% trans "Task Manager" %}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -11,45 +11,45 @@
 
             <li class="nav-item">
               <form method="get" action="{% url 'users' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Users" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Users" %}</button>
               </form>
             </li>
 
             {% if user.is_authenticated %}
             <li class="nav-item">
               <form method="get" action="{% url 'statuses' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Statuses" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Statuses" %}</button>
               </form>
             </li>
 
             <li class="nav-item">
               <form method="get" action="{% url 'labels' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Labels" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Labels" %}</button>
               </form>
             </li>
 
             <li class="nav-item">
               <form method="get" action="{% url 'tasks' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Tasks" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Tasks" %}</button>
               </form>
             </li>
 
             <li class="nav-item">
               <form method="post" action="{% url 'logout' %}" style="display:inline;">
                   {% csrf_token %}
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Log Out" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Log Out" %}</button>
               </form>
             </li>
             {% else %}
             <li class="nav-item">
               <form method="get" action="{% url 'create_user' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Register" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Register" %}</button>
               </form>
             </li>
 
             <li class="nav-item">
               <form method="get" action="{% url 'login' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Login" %}</button>
+                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Login" %}</button>
               </form>
             </li>
             {% endif %}
