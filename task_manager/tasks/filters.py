@@ -15,8 +15,9 @@ class TaskFilter(FilterSet):
                                        widget=forms.CheckboxInput)
 
     def get_self_tasks(self, queryset, name, value):
-        lookup = queryset.filter(author=self.request.user)
-        return lookup if value else queryset
+        if value:
+            return queryset.filter(author=self.request.user)
+        return queryset
 
     class Meta:
         model = Task
