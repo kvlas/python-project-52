@@ -51,7 +51,7 @@ class LabelDeleteView(UserLoginRequiredMixin, DeleteProtectionMixin,
     model = Label
     success_url = reverse_lazy('labels')
     success_message = _('Label deleted')
-    protected_message = _('You cannot delete staus while it is in use')
+    protected_message = _('You cannot delete label while it is in use')
     protected_url = reverse_lazy('labels')
     extra_context = {
         'title': _('Delete Label'),
