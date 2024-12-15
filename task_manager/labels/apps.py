@@ -1,7 +1,7 @@
 from django.apps import AppConfig
 from django.utils.translation import gettext_lazy as _
 
-class StatusesConfig(AppConfig):
+class LabelsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'task_manager.statuses'
-    verbose_name = _('Statuses')
+    name = 'task_manager.labels'
+    verbose_name = _('Labels')
