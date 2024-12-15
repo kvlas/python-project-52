@@ -5,7 +5,7 @@ from django.contrib.messages.views import SuccessMessageMixin
 from task_manager.mixins import UserPermissionMixin, \
     UserLoginRequiredMixin, DeleteProtectionMixin
 from task_manager.users.models import User
-from task_manager.users.forms import UserForm
+from task_manager.users.forms import UserCreateForm, UserUpdateForm
 
 class UserListView(ListView):
 
@@ -21,7 +21,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
 
     template_name = 'form.html'
     model = User
-    form_class = UserForm
+    form_class = UserCreateForm
     success_url = reverse_lazy('login')
     success_message = _('User is successfully registered')
     extra_context = {
@@ -33,7 +33,7 @@ class UserUpdateView(UserLoginRequiredMixin, SuccessMessageMixin,
                      UserPermissionMixin, UpdateView):
 
     model = User
-    form_class = UserForm
+    form_class = UserUpdateForm
     template_name = 'form.html'
     success_url = reverse_lazy('users')
     success_message = _('User is successfully updated')
