@@ -27,8 +27,11 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">{% trans "Log Out" %}</a>
-          </li>
+            <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                {% csrf_token %}
+                <button type="submit" class="nav-link btn btn-link" style="display: inline; margin: 0; padding: 0;">{% trans "Log Out" %}</button>
+            </form>
+        </li>
           {% else %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'create_user' %}">{% trans "Register" %}</a>
