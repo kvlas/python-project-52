@@ -14,9 +14,7 @@
     {% bootstrap_css %}
   </head>
   <body class="d-flex flex-column min-vh-100">
-    <header>
-        {% include "navigation.html" %}
-    </header>
+    {% include "navigation.html" %}
     <main class="container wrapper flex-grow-1">
         {% bootstrap_messages %}
         {% block content %}{% endblock %}
