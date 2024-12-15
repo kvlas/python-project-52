@@ -8,11 +8,12 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}</a>
           <li>
 
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
           <li>
@@ -20,22 +21,23 @@
           <li class="nav-item">
             <a class="nav-link" href="{% url 'labels' %}">{% trans "Labels" %}</a>
           <li>
-          
+
           <li class="nav-item">
             <a class="nav-link" href="{% url 'tasks' %}">{% trans "Tasks" %}</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_user' %}">{% trans "Register" %}</a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="{% url 'logout' %}">{% trans "Log Out" %}</a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'create_user' %}">{% trans "Register" %}</a>
           </li>
 
           <li class="nav-item">
             <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}</a>
           </li>
+          {% endif %}
 
         </ul>
     </div>
