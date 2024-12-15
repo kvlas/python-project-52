@@ -7,7 +7,7 @@ from task_manager.mixins import UserPermissionMixin, \
 from task_manager.users.models import User
 from task_manager.users.forms import UserForm
 
-class UsersListView(ListView):
+class UserListView(ListView):
 
     template_name = 'users/index.html'
     model = User
