@@ -14,10 +14,10 @@ class Task(models.Model):
     author = models.ForeignKey(User, on_delete=models.PROTECT,
                                blank=False, related_name="task_author")
     status = models.ForeignKey(Status, on_delete=models.PROTECT,
-                               blank=False)
+                               blank=False, related_name='task_statuses')
     labels = models.ManyToManyField(Label, through='Connection',
                                     through_fields=('task', 'label'),
-                                    blank=True)
+                                    blank=True, related_name='task_labels')
 
 
     def __str__(self):
