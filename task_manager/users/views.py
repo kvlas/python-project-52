@@ -1,73 +1,63 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from django.views import View
-from django.contrib import messages
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from django.utils.translation import gettext_lazy as _
+from django.contrib.messages.views import SuccessMessageMixin
+from task_manager.mixins import UserPermissionMixin, \
+    UserLoginRequiredMixin, DeleteProtectionMixin
 from task_manager.users.models import User
 from task_manager.users.forms import UserForm
 
+class UsersListView(ListView):
 
-class IndexView(View):
-
-    def get(self, request, *args, **kwargs):
-        users = User.objects.all()
-        return render(request, 'users/index.html', context={
-            'users': users,
-        })
-
-
-class UserView(View):
-
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, id=kwargs['id'])
-        return render(request, 'users/user.html', context={
-            'user': user,
-        })
+    template_name = 'users/index.html'
+    model = User
+    context_object_name = 'users'
+    extra_context = {
+        'title': _('Users')
+    }
 
 
-class UserCreateView(View):
+class UserCreateView(SuccessMessageMixin, CreateView):
 
-    def get(self, request, *args, **kwargs):
-        form = UserForm()
-        return render(request, 'users/create.html', {'form': form})
-
-    def post(self, request, *args, **kwargs):
-        form = UserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('Пользователь успешно зарегистрирован'))
-            return redirect('login')
-
-        return render(request, 'users/create.html', {'form': form})
-    
+    template_name = 'form.html'
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy('login')
+    success_message = _('User is successfully registered')
+    extra_context = {
+        'title': _('Create user'),
+        'button_text': _('Register'),
+    }
 
 
-class UserUpdateView(View):
+class UserUpdateView(UserLoginRequiredMixin, SuccessMessageMixin,
+                     UserPermissionMixin, UpdateView):
 
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        form = UserForm(instance=user)
-        return render(request, 'users/update.html', {'form': form, 'user': user})
+    template_name = 'form.html'
+    model = User
+    form_class = UserForm
+    success_url = reverse_lazy('users')
+    success_message = _('User is successfully updated')
+    permission_message = _('You have no rights to change another user.')
+    permission_url = reverse_lazy('users')
+    extra_context = {
+        'title': _('Update user'),
+        'button_text': _('Update'),
+    }
 
-    def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        form = UserForm(request.POST, instance=user)
-        if form.is_valid():
-            form.save()
-            messages.success(request, _('User details updated successfully'))
-            return redirect('users')
-        return render(request, 'users/update.html', {'form': form, 'user': user})
 
-class UserDeleteView(View):
-  
-    def get(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        return render(request, 'users/delete.html', {'user': user})
+class UserDeleteView(UserLoginRequiredMixin, UserPermissionMixin,
+                     DeleteProtectionMixin, SuccessMessageMixin, DeleteView):
 
-    def post(self, request, *args, **kwargs):
-        user = get_object_or_404(User, pk=kwargs['pk'])
-        try:
-            user.delete()
-            messages.success(request, _("User was successfully deleted."))
-        except Exception as e:
-            messages.error(request, _("An error occurred while deleting the user: ") + str(e))
-        return redirect('users')
+    template_name = 'users/delete.html'
+    model = User
+    success_url = reverse_lazy('users')
+    success_message = _('User is successfully deleted')
+    permission_message = _('You have no rights to change another user.')
+    permission_url = reverse_lazy('users')
+    protected_message = _('Unable to delete a user because he is being used')
+    protected_url = reverse_lazy('users')
+    extra_context = {
+        'title': _('Delete user'),
+        'button_text': _('Yes, delete'),
+    }
