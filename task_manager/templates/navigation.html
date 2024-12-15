@@ -2,49 +2,57 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">{% trans 'Task Manager' %}</a>
+    <a class="navbar-brand" href="/">{% trans "Task Manager" %}</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'users' %}">{% trans 'Users' %}</a>
-          <li>
+            <li class="nav-item">
+              <form method="get" action="{% url 'users' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Users" %}</button>
+              </form>
+            </li>
 
-          {% if user.is_authenticated %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'statuses' %}">{% trans "Statuses" %}</a>
-          <li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <form method="get" action="{% url 'statuses' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Statuses" %}</button>
+              </form>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'labels' %}">{% trans "Labels" %}</a>
-          <li>
+            <li class="nav-item">
+              <form method="get" action="{% url 'labels' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Labels" %}</button>
+              </form>
+            </li>
 
-          <li class="nav-item">
-            <form method="get" action="{% url 'tasks' %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="nav-link btn btn-link" style="display: inline; margin: 0; padding: 0;">{% trans "Tasks" %}</button>
-            </form>
-          </li>
+            <li class="nav-item">
+              <form method="get" action="{% url 'tasks' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Tasks" %}</button>
+              </form>
+            </li>
 
-          <li class="nav-item">
-            <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                {% csrf_token %}
-                <button type="submit" class="nav-link btn btn-link" style="display: inline; margin: 0; padding: 0;">{% trans "Log Out" %}</button>
-            </form>
-          </li>
-          {% else %}
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'create_user' %}">{% trans "Register" %}</a>
-          </li>
+            <li class="nav-item">
+              <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Log Out" %}</button>
+              </form>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <form method="get" action="{% url 'create_user' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Register" %}</button>
+              </form>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'login' %}">{% trans 'Login' %}</a>
-          </li>
-          {% endif %}
-
+            <li class="nav-item">
+              <form method="get" action="{% url 'login' %}" style="display:inline;">
+                  <button type="submit" class="nav-link btn btn-link m-2">{% trans "Login" %}</button>
+              </form>
+            </li>
+            {% endif %}
         </ul>
     </div>
 </nav>
