@@ -14,9 +14,8 @@ class UserForm(UserCreationForm):
         max_length=150,
         required=True,
         label=_("Username"),
-        help_text=_("Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./+/-/_."),
+        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
-
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('first_name', 'last_name',
