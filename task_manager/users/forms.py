@@ -38,7 +38,9 @@ class UserUpdateForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username')
+        fields = ('first_name', 'last_name',
+                  'username', 'password1', 'password2'
+                  )
 
     def clean_username(self):
         username = self.cleaned_data['username']
