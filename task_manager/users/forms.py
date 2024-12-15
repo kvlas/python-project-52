@@ -35,6 +35,16 @@ class UserUpdateForm(forms.ModelForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
+    new_password1 = forms.CharField(
+        label=_("New password"),
+        widget=forms.PasswordInput,
+        required=False,
+    )
+    new_password2 = forms.CharField(
+        label=_("Confirm new password"),
+        widget=forms.PasswordInput,
+        required=False,
+    )
 
     class Meta:
         model = User
@@ -45,3 +55,26 @@ class UserUpdateForm(forms.ModelForm):
         if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
             raise forms.ValidationError(_("A user with that username already exists."))
         return username
+
+    def clean(self):
+        cleaned_data = super().clean()
+        new_password1 = cleaned_data.get("new_password1")
+        new_password2 = cleaned_data.get("new_password2")
+
+        if new_password1 or new_password2:
+            if new_password1 != new_password2:
+                raise forms.ValidationError(_("The two password fields must match."))
+        
+        return cleaned_data
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        new_password = self.cleaned_data.get("new_password1")
+
+        if new_password:
+            user.set_password(new_password)
+        
+        if commit:
+            user.save()
+        
+        return user
