@@ -38,7 +38,7 @@ class UserUpdateForm(UserChangeForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
-
+    password = None
     password_form = None
 
     class Meta(UserChangeForm.Meta):
