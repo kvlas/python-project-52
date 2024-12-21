@@ -38,13 +38,13 @@ class UserUpdateForm(UserChangeForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
-    new_password1 = forms.CharField(
+    password1 = forms.CharField(
         label=_("New password"),
         help_text=_("Your password must contain at least 3 characters."),
         widget=forms.PasswordInput,
         required=False,
     )
-    new_password2 = forms.CharField(
+    password2 = forms.CharField(
         label=_("Confirm new password"),
         help_text=_("To confirm, please enter your password again."),
         widget=forms.PasswordInput,
