@@ -1,0 +1,18 @@
+[
+    {
+      "model": "statuses.status",
+      "pk": 1,
+      "fields": {
+        "name": "To do",
+        "date_created": "2024-12-21T16:20:50.805Z"
+      }
+    },
+    {
+      "model": "statuses.status",
+      "pk": 2,
+      "fields": {
+        "name": "In progress",
+        "date_created": "2024-12-21T16:30:50.805Z"
+      }
+    }
+  ]

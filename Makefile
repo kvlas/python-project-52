@@ -1,21 +1,34 @@
+PORT ?= 8000
+
+lint:
+	poetry run flake8 task_manager
+
+dev:
+	poetry run python manage.py runserver
+
 install: 
 	poetry install
+
+build:
+	./build.sh
+
+start:
+	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
+
+run:
+	poetry run python3 manage.py runserver 0:$(PORT)
 
 migrate:
 	poetry run python3 manage.py makemigrations
 	poetry run python3 manage.py migrate
 
-build: install migrate
-
-PORT ?= 8000
-start:
-	poetry run gunicorn -w 5 -b 0.0.0.0:$(PORT) task_manager.wsgi
-
 test:
-	poetry run python3 manage.py test
+	poetry run python3 manage.py test task_manager.tests
 
-run:
-	poetry run python3 manage.py runserver 0:$(PORT)
+test-cov:
+	poetry run coverage run manage.py test
+	poetry run coverage xml
 
-lint:
-	poetry run flake8 task_manager
+dev-cov:
+	poetry run coverage run manage.py test
+	poetry run coverage report -m

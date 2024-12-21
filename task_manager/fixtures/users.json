@@ -1,0 +1,35 @@
+[
+    {
+     "model": "users.user",
+     "pk": 1,
+     "fields": {
+      "password": "123",
+      "username": "sam",
+      "date_joined": "2024-12-21T16:20:50.805Z",
+      "first_name": "Sam",
+      "last_name": "Smith"
+     }
+    },
+    {
+     "model": "users.user",
+     "pk": 2,
+     "fields": {
+      "password": "456",
+      "username": "john",
+      "date_joined": "2024-12-21T16:30:50.805Z",
+      "first_name": "John",
+      "last_name": "Doe"
+     }
+    },
+    {
+     "model": "users.user",
+     "pk": 3,
+     "fields": {
+      "password": "789",
+      "username": "matt",
+      "date_joined": "2024-12-21T16:40:50.805Z",
+      "first_name": "Matt",
+      "last_name": "Daemon"
+     }
+    }
+    ]
