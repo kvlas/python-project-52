@@ -55,6 +55,8 @@ class UserUpdateForm(UserChangeForm):
             self.password_form.fields['new_password1'].widget.attrs.update({'id': 'id_password1'})
         if 'new_password2' in self.password_form.fields:
             self.password_form.fields['new_password2'].widget.attrs.update({'id': 'id_password2'})
+        if 'new_password2' in self.password_form.fields:
+            self.password_form.fields['new_password2'].label = _("Confirm password")
     
         self.fields.update(self.password_form.fields)
 

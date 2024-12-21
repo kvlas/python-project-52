@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-21 22:59+0300\n"
+"POT-Creation-Date: 2024-12-22 00:43+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -262,8 +262,6 @@ msgid "Full name"
 msgstr "Полное имя"
 
 #: task_manager/tests/labels/test.py:48
-#, fuzzy
-#| msgid "Label successfully created"
 msgid "Label successfully changed"
 msgstr "Метка успешно создана"
 
@@ -285,29 +283,13 @@ msgstr ""
 "Обязательное поле. Не более 150 символов. Только буквы, цифры и символы @/./"
 "+/-/_."
 
-#: task_manager/users/forms.py:42
-msgid "New password"
-msgstr "Пароль"
-
-#: task_manager/users/forms.py:43
-msgid "Your password must contain at least 3 characters."
-msgstr "Ваш пароль должен содержать как минимум 3 символа."
-
-#: task_manager/users/forms.py:48
-msgid "Confirm new password"
+#: task_manager/users/forms.py:59
+msgid "Confirm password"
 msgstr "Подтверждение пароля"
 
-#: task_manager/users/forms.py:49
-msgid "To confirm, please enter your password again."
-msgstr "Для подтверждения введите, пожалуйста, пароль ещё раз."
-
-#: task_manager/users/forms.py:61
+#: task_manager/users/forms.py:66
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем пользователя уже существует"
-
-#: task_manager/users/forms.py:71
-msgid "The two password fields must match."
-msgstr "Пароли не совпадают"
 
 #: task_manager/users/models.py:13
 msgid "User"
