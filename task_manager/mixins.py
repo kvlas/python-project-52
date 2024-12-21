@@ -1,9 +1,9 @@
-from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.shortcuts import redirect
-from django.utils.translation import gettext as _
 from django.db.models import ProtectedError
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext as _
 
 
 class UserLoginRequiredMixin(LoginRequiredMixin):
