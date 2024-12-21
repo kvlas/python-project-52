@@ -7,37 +7,52 @@ from task_manager.users.models import User
 
 class UserCreateForm(UserCreationForm):
     first_name = forms.CharField(
-        max_length=150, required=True, label=_("First name")
+        max_length=150,
+        required=True,
+        label=_("First name")
     )
     last_name = forms.CharField(
-        max_length=150, required=True, label=_("Last name")
+        max_length=150,
+        required=True,
+        label=_("Last name")
     )
     username = forms.CharField(
         max_length=150,
         required=True,
         label=_("Username"),
-        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
+        help_text=_(
+            "Required. 150 characters or fewer. Letters, digits and "
+            "@/./+/-/_ only."
+        ),
     )
 
     class Meta(UserCreationForm.Meta):
         model = User
-        fields = ('first_name', 'last_name',
-                  'username', 'password1', 'password2'
-                  )
+        fields = (
+            'first_name', 'last_name',
+            'username', 'password1', 'password2'
+        )
 
 
 class UserUpdateForm(UserChangeForm):
     first_name = forms.CharField(
-        max_length=150, required=True, label=_("First name")
+        max_length=150,
+        required=True,
+        label=_("First name")
     )
     last_name = forms.CharField(
-        max_length=150, required=True, label=_("Last name")
+        max_length=150,
+        required=True,
+        label=_("Last name")
     )
     username = forms.CharField(
         max_length=150,
         required=True,
         label=_("Username"),
-        help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
+        help_text=_(
+            "Required. 150 characters or fewer. Letters, digits and "
+            "@/./+/-/_ only."
+        ),
     )
     password = None
     password_form = None
@@ -48,25 +63,38 @@ class UserUpdateForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         user = kwargs.get('instance')
-        self.password_form = SetPasswordForm(user, data=kwargs.get('data'))
+        self.password_form = SetPasswordForm(
+            user,
+            data=kwargs.get('data')
+        )
         super().__init__(*args, **kwargs)
         
         # Hexlet tests
         if 'new_password1' in self.password_form.fields:
-            self.password_form.fields['new_password1'].widget.attrs.update({'id': 'id_password1'})
+            self.password_form.fields['new_password1'].widget.attrs.update(
+                {'id': 'id_password1'}
+            )
         if 'new_password2' in self.password_form.fields:
-            self.password_form.fields['new_password2'].widget.attrs.update({'id': 'id_password2'})
+            self.password_form.fields['new_password2'].widget.attrs.update(
+                {'id': 'id_password2'}
+            )
         if 'new_password1' in self.password_form.fields:
             self.password_form.fields['new_password1'].label = _("Password")
         if 'new_password2' in self.password_form.fields:
-            self.password_form.fields['new_password2'].label = _("Confirm password")
+            self.password_form.fields['new_password2'].label = _(
+                "Confirm password"
+            )
     
         self.fields.update(self.password_form.fields)
 
     def clean_username(self):
         username = self.cleaned_data['username']
-        if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError(_("A user with that username already exists."))
+        if User.objects.filter(
+            username=username
+        ).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError(
+                _("A user with that username already exists.")
+            )
         return username
    
     def clean(self):
