@@ -1,0 +1,10 @@
+.venv/
+task_manager/__pycache__/
+task_manager/.env
+dist/
+__pycache__
+.pytest_cache/
+.coverage
+coverage.xml
+*.sqlite3
+db.sqlite3
