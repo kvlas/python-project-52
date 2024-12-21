@@ -250,7 +250,7 @@ msgstr "Вход"
 
 #: task_manager/templates/navigation.html:54 task_manager/users/views.py:29
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/tasks/index.html:12
 msgid "Create task"
@@ -302,7 +302,7 @@ msgstr "Пользователь успешно зарегестрирован"
 
 #: task_manager/users/views.py:28
 msgid "Create user"
-msgstr "Зарегистрировать"
+msgstr "Регистрация"
 
 #: task_manager/users/views.py:39
 msgid "User is successfully updated"
