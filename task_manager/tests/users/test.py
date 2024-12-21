@@ -53,7 +53,8 @@ class TestUser(TestCase):
         }
 
         response = self.client.post(self.urls['create'], new_user_data)
-        self.assertEqual(User.objects.last().username, new_user_data['username'])
+        self.assertEqual(User.objects.last().username,
+                         new_user_data['username'])
         self.assertRedirects(response, self.urls['login'], 302)
 
     def test_update_user(self):
@@ -67,7 +68,8 @@ class TestUser(TestCase):
             'password2': '123',
         }
 
-        response = self.client.post(self.urls['update'](self.user1.pk), update_data)
+        response = self.client.post(self.urls['update'](self.user1.pk),
+                                    update_data)
         self.assertRedirects(response, self.urls['list'], 302)
 
         self.user1.refresh_from_db()
