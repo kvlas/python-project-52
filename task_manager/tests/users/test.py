@@ -74,19 +74,16 @@ class TestUser(TestCase):
         self.assertEqual(self.user1.username, 'updateduser')
 
     def test_delete_user(self):
-        # Проверка неавторизованного доступа
         response = self.client.get(self.urls['delete'](self.user1.pk))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, self.urls['list'])
 
-        # Удаление от другого аккаунта
         self._login(self.user2.username, '456')
 
         response = self.client.post(self.urls['delete'](self.user1.pk))
         self.assertEqual(response.status_code, 302)
         self.assertRedirects(response, self.urls['list'])
 
-        # Авторизация и удаление аккаунта
         self._login(self.user1.username, '123')
 
         initial_count = User.objects.count()
