@@ -302,7 +302,7 @@ msgstr "Пользователь успешно зарегестрирован"
 
 #: task_manager/users/views.py:28
 msgid "Create user"
-msgstr "Создать пользователя"
+msgstr "Регистрация"
 
 #: task_manager/users/views.py:39
 msgid "User is successfully updated"

@@ -11,48 +11,37 @@
         <ul class="navbar-nav mr-auto">
 
             <li class="nav-item">
-              <form method="get" action="{% url 'users' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Users" %}</button>
-              </form>
+              <a href="{% url 'users' %}" class="nav-link m-1">{% trans "Users" %}</a>
             </li>
 
             {% if user.is_authenticated %}
             <li class="nav-item">
-              <form method="get" action="{% url 'statuses' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Statuses" %}</button>
-              </form>
+              <a href="{% url 'statuses' %}" class="nav-link m-1">{% trans "Statuses" %}</a>
             </li>
 
             <li class="nav-item">
-              <form method="get" action="{% url 'labels' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Labels" %}</button>
-              </form>
+              <a href="{% url 'labels' %}" class="nav-link m-1">{% trans "Labels" %}</a>
             </li>
 
             <li class="nav-item">
-              <form method="get" action="{% url 'tasks' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Tasks" %}</button>
-              </form>
+              <a href="{% url 'tasks' %}" class="nav-link m-1">{% trans "Tasks" %}</a>
             </li>
 
             <li class="nav-item">
-              <form method="post" action="{% url 'logout' %}" style="display:inline;">
+              <!-- Logout link triggering a POST request -->
+              <a href="#" class="nav-link m-1" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">{% trans "Log Out" %}</a>
+              <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
                   {% csrf_token %}
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Log Out" %}</button>
               </form>
             </li>
             {% else %}
-
+            
             <li class="nav-item">
-              <form method="get" action="{% url 'login' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Login" %}</button>
-              </form>
+              <a href="{% url 'login' %}" class="nav-link m-1">{% trans "Login" %}</a>
             </li>
 
             <li class="nav-item">
-              <form method="get" action="{% url 'create_user' %}" style="display:inline;">
-                  <button type="submit" class="nav-link btn btn-link m-1">{% trans "Register" %}</button>
-              </form>
+              <a href="{% url 'create_user' %}" class="nav-link m-1">{% trans "Register" %}</a>
             </li>
             {% endif %}
         </ul>
