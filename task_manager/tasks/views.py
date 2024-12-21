@@ -1,10 +1,12 @@
 from django_filters.views import FilterView
+from django.contrib import messages
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 from django.views.generic import CreateView, \
     UpdateView, DeleteView, DetailView
 from django.contrib.messages.views import SuccessMessageMixin
-from task_manager.mixins import UserLoginRequiredMixin, DeleteProtectionMixin
+from task_manager.mixins import UserLoginRequiredMixin
 
 from task_manager.tasks.models import Task
 from task_manager.tasks.forms import TaskForm
@@ -73,16 +75,23 @@ class TaskUpdateView(UserLoginRequiredMixin,
     }
 
 
-class TaskDeleteView(UserLoginRequiredMixin, DeleteProtectionMixin,
+class TaskDeleteView(UserLoginRequiredMixin,
                      SuccessMessageMixin, DeleteView):
 
     template_name = 'tasks/delete.html'
     model = Task
     success_url = reverse_lazy('tasks')
     success_message = _('Task deleted')
-    protected_message = _('You cannot delete task while it is in use')
+    error_message = _('Only the author can delete the task')
     protected_url = reverse_lazy('tasks')
     extra_context = {
         'title': _('Delete Task'),
         'button_text': _('Yes, delete'),
     }
+
+    def dispatch(self, request, *args, **kwargs):
+        task = self.get_object()
+        if task.author != request.user:
+            messages.error(request, self.error_message)
+            return redirect(self.success_url)
+        return super().dispatch(request, *args, **kwargs)
