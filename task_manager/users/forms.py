@@ -58,10 +58,12 @@ class UserUpdateForm(UserChangeForm):
         if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
             raise forms.ValidationError(_("A user with that username already exists."))
         return username
-
+   
     def clean(self):
         cleaned_data = super().clean()
-        password_cleaned_data = self.password_form.clean()
+        self.password_form.data = self.data
+        self.password_form.full_clean()
+        password_cleaned_data = self.password_form.cleaned_data
         cleaned_data.update(password_cleaned_data)
         return cleaned_data
 
