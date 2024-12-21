@@ -50,7 +50,6 @@ class UserUpdateForm(UserChangeForm):
         self.password_form = SetPasswordForm(user)
         super().__init__(*args, **kwargs)
         
-        # Добавляем поля SetPasswordForm
         self.fields.update(self.password_form.fields)
 
     def clean_username(self):
@@ -61,10 +60,14 @@ class UserUpdateForm(UserChangeForm):
    
     def clean(self):
         cleaned_data = super().clean()
-        self.password_form.data = self.data
         self.password_form.full_clean()
-        password_cleaned_data = self.password_form.cleaned_data
-        cleaned_data.update(password_cleaned_data)
+        
+        if self.password_form.is_valid():
+            password_cleaned_data = self.password_form.cleaned_data
+            cleaned_data.update(password_cleaned_data)
+        else:
+            self.add_error(None, self.password_form.errors)
+
         return cleaned_data
 
     def save(self, commit=True):
