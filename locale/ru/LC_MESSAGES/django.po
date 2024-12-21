@@ -318,7 +318,7 @@ msgstr "Пользователь успешно удален"
 
 #: task_manager/users/views.py:57
 msgid "Unable to delete a user because he is being used"
-msgstr "Невозможно удалить"
+msgstr "Невозможно удалить активного пользователя"
 
 #: task_manager/users/views.py:60
 msgid "Delete user"
