@@ -84,7 +84,7 @@ msgstr "Невозможно удалить метку, так как она и�
 
 #: task_manager/labels/views.py:55
 msgid "Delete Label"
-msgstr "Удалить метку"
+msgstr "Удаление метки"
 
 #: task_manager/labels/views.py:56 task_manager/statuses/views.py:60
 #: task_manager/tasks/views.py:87 task_manager/users/views.py:63
@@ -138,7 +138,7 @@ msgstr "Невозможно удалить статус, так как он и�
 
 #: task_manager/statuses/views.py:59
 msgid "Delete status"
-msgstr "Удалить статус"
+msgstr "Удаление статуса"
 
 #: task_manager/tasks/apps.py:8 task_manager/tasks/models.py:36
 #: task_manager/tasks/views.py:22 task_manager/templates/navigation.html:27
@@ -213,7 +213,7 @@ msgstr "Невозможно удалить задача, так как она �
 
 #: task_manager/tasks/views.py:86
 msgid "Delete Task"
-msgstr "Удалить задачу"
+msgstr "Удаление задачи"
 
 #: task_manager/templates/form.html:6 task_manager/templates/index.html:7
 #: task_manager/templates/labels/delete.html:5
