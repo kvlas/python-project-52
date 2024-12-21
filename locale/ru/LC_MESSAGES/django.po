@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-12-22 00:43+0300\n"
+"POT-Creation-Date: 2024-12-22 00:48+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -284,10 +284,14 @@ msgstr ""
 "+/-/_."
 
 #: task_manager/users/forms.py:59
+msgid "Password"
+msgstr "Пароль"
+
+#: task_manager/users/forms.py:61
 msgid "Confirm password"
 msgstr "Подтверждение пароля"
 
-#: task_manager/users/forms.py:66
+#: task_manager/users/forms.py:68
 msgid "A user with that username already exists."
 msgstr "Пользователь с таким именем пользователя уже существует"
 
