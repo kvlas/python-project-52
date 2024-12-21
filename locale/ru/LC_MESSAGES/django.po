@@ -122,7 +122,7 @@ msgstr "Создать статус"
 
 #: task_manager/statuses/views.py:42
 msgid "Status updated"
-msgstr "Статус успешно обновлен"
+msgstr "Статус успешно изменен"
 
 #: task_manager/statuses/views.py:44
 msgid "Update status"
@@ -317,7 +317,7 @@ msgstr "Пользователь успешно изменен"
 
 #: task_manager/users/views.py:45
 msgid "Update user"
-msgstr "Изменить пользователя"
+msgstr "Изменение пользователя"
 
 #: task_manager/users/views.py:56
 msgid "User is successfully deleted"
