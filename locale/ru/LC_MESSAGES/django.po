@@ -173,7 +173,7 @@ msgstr "Задача"
 
 #: task_manager/tasks/views.py:23
 msgid "Show"
-msgstr "Просмотр"
+msgstr "Показать"
 
 #: task_manager/tasks/views.py:33 task_manager/templates/tasks/task.html:11
 msgid "Task view"
