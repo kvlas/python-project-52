@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "hexlet-code"
-version = "0.8.2"
+version = "0.9.1"
 description = ""
 authors = ["Konstantin Vlasov <ke.vlasov@yandex.ru>"]
 readme = "README.md"
@@ -17,6 +17,9 @@ django = "^5.1.4"
 django-bootstrap5 = "^24.3"
 django_filter = "^24.3"
 psycopg2-binary = "^2.9.10"
+python-dotenv = "^1.0.1"
+gunicorn = "^23.0.0"
+dj-database-url = "^2.3.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^7.4.2"
