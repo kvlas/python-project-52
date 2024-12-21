@@ -40,11 +40,13 @@ class UserUpdateForm(forms.ModelForm):
     )
     new_password1 = forms.CharField(
         label=_("New password"),
+        help_text=_("Your password must contain at least 3 characters."),
         widget=forms.PasswordInput,
         required=False,
     )
     new_password2 = forms.CharField(
         label=_("Confirm new password"),
+        help_text=_("To confirm, please enter your password again."),
         widget=forms.PasswordInput,
         required=False,
     )
