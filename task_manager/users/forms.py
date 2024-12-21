@@ -51,7 +51,7 @@ class UserUpdateForm(UserChangeForm):
         required=False,
     )
 
-    class Meta(UserChangeForm.Meta):
+    class Meta:
         model = User
         fields = ('first_name', 'last_name', 'username')
 
