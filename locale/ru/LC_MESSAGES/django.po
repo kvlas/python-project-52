@@ -176,7 +176,7 @@ msgstr "Просмотр"
 
 #: task_manager/tasks/views.py:32 task_manager/templates/tasks/task.html:11
 msgid "Task view"
-msgstr "Задачи"
+msgstr "Просмотр задачи"
 
 #: task_manager/tasks/views.py:34 task_manager/templates/labels/index.html:35
 #: task_manager/templates/statuses/index.html:36
@@ -246,11 +246,11 @@ msgstr "Выход"
 
 #: task_manager/templates/navigation.html:48 task_manager/views.py:22
 msgid "Login"
-msgstr "Вход"
+msgstr "Войти"
 
 #: task_manager/templates/navigation.html:54 task_manager/users/views.py:29
 msgid "Register"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/tasks/index.html:12
 msgid "Create task"
