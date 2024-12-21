@@ -38,48 +38,36 @@ class UserUpdateForm(UserChangeForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
-    password1 = forms.CharField(
-        label=_("New password"),
-        help_text=_("Your password must contain at least 3 characters."),
-        widget=forms.PasswordInput,
-        required=False,
-    )
-    password2 = forms.CharField(
-        label=_("Confirm new password"),
-        help_text=_("To confirm, please enter your password again."),
-        widget=forms.PasswordInput,
-        required=False,
-    )
 
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = User
-        fields = ('first_name', 'last_name', 'username')
+        fields = ('first_name', 'last_name', 'username',)
 
-    def clean_username(self):
-        username = self.cleaned_data['username']
-        if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
-            raise forms.ValidationError(_("A user with that username already exists."))
-        return username
+    # def clean_username(self):
+    #     username = self.cleaned_data['username']
+    #     if User.objects.filter(username=username).exclude(pk=self.instance.pk).exists():
+    #         raise forms.ValidationError(_("A user with that username already exists."))
+    #     return username
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
+    # def clean(self):
+    #     cleaned_data = super().clean()
+    #     password1 = cleaned_data.get("password1")
+    #     password2 = cleaned_data.get("password2")
 
-        if password1 or password2:
-            if password1 != password2:
-                raise forms.ValidationError(_("The two password fields must match."))
+    #     if password1 or password2:
+    #         if password1 != password2:
+    #             raise forms.ValidationError(_("The two password fields must match."))
 
-        return cleaned_data
+    #     return cleaned_data
 
-    def save(self, commit=True):
-        user = super().save(commit=False)
-        new_password = self.cleaned_data.get("password1")
+    # def save(self, commit=True):
+    #     user = super().save(commit=False)
+    #     new_password = self.cleaned_data.get("password1")
 
-        if new_password:
-            user.set_password(new_password)
+    #     if new_password:
+    #         user.set_password(new_password)
 
-        if commit:
-            user.save()
+    #     if commit:
+    #         user.save()
 
-        return user
+    #     return user
