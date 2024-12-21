@@ -1,6 +1,6 @@
 from django import forms
 from task_manager.users.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.utils.translation import gettext_lazy as _
 
 
@@ -25,7 +25,7 @@ class UserCreateForm(UserCreationForm):
                   )
 
 
-class UserUpdateForm(forms.ModelForm):
+class UserUpdateForm(UserChangeForm):
     first_name = forms.CharField(
         max_length=150, required=True, label=_("First name")
     )
@@ -51,7 +51,7 @@ class UserUpdateForm(forms.ModelForm):
         required=False,
     )
 
-    class Meta:
+    class Meta(UserChangeForm.Meta):
         model = User
         fields = ('first_name', 'last_name', 'username')
 
