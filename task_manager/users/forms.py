@@ -50,6 +50,12 @@ class UserUpdateForm(UserChangeForm):
         self.password_form = SetPasswordForm(user, data=kwargs.get('data'))
         super().__init__(*args, **kwargs)
         
+        # Hexlet tests
+        if 'new_password1' in self.password_form.fields:
+            self.password_form.fields['new_password1'].widget.attrs.update({'id': 'id_password1'})
+        if 'new_password2' in self.password_form.fields:
+            self.password_form.fields['new_password2'].widget.attrs.update({'id': 'id_password2'})
+    
         self.fields.update(self.password_form.fields)
 
     def clean_username(self):
