@@ -246,11 +246,11 @@ msgstr "Выход"
 
 #: task_manager/templates/navigation.html:48 task_manager/views.py:22
 msgid "Login"
-msgstr "Войти"
+msgstr "Вход"
 
 #: task_manager/templates/navigation.html:54 task_manager/users/views.py:29
 msgid "Register"
-msgstr "Зарегистрировать"
+msgstr "Регистрация"
 
 #: task_manager/templates/tasks/index.html:12
 msgid "Create task"
