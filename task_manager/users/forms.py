@@ -47,7 +47,7 @@ class UserUpdateForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         user = kwargs.get('instance')
-        self.password_form = SetPasswordForm(user, *args, **kwargs)
+        self.password_form = SetPasswordForm(user)
         super().__init__(*args, **kwargs)
         
         # Добавляем поля SetPasswordForm
