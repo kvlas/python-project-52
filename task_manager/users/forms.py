@@ -3,6 +3,7 @@ from task_manager.users.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
+
 class UserCreateForm(UserCreationForm):
     first_name = forms.CharField(
         max_length=150, required=True, label=_("First name")
@@ -16,12 +17,14 @@ class UserCreateForm(UserCreationForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
+
     class Meta(UserCreationForm.Meta):
         model = User
         fields = ('first_name', 'last_name',
                   'username', 'password1', 'password2'
                   )
-        
+
+
 class UserUpdateForm(forms.ModelForm):
     first_name = forms.CharField(
         max_length=150, required=True, label=_("First name")
@@ -64,7 +67,7 @@ class UserUpdateForm(forms.ModelForm):
         if new_password1 or new_password2:
             if new_password1 != new_password2:
                 raise forms.ValidationError(_("The two password fields must match."))
-        
+
         return cleaned_data
 
     def save(self, commit=True):
@@ -73,8 +76,8 @@ class UserUpdateForm(forms.ModelForm):
 
         if new_password:
             user.set_password(new_password)
-        
+
         if commit:
             user.save()
-        
+
         return user

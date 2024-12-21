@@ -7,8 +7,8 @@ from django.contrib import messages
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.messages.views import SuccessMessageMixin
 
-class IndexView(View):
 
+class IndexView(View):
     def get(self, request, *args, **kwargs):
         return render(request, 'index.html')
 
@@ -22,6 +22,7 @@ class UserLoginView(SuccessMessageMixin, LoginView):
         'title': _('Login'),
         'button_text': _('Enter'),
     }
+
 
 class UserLogoutView(LogoutView):
     next_page = reverse_lazy('index')

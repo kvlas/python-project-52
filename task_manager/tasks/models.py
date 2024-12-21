@@ -27,7 +27,6 @@ class Task(models.Model):
                                     blank=True, related_name='task_labels',
                                     verbose_name=_('Labels'))
 
-
     def __str__(self):
         """Represent model object."""
         return self.name
@@ -35,6 +34,7 @@ class Task(models.Model):
     class Meta:
         verbose_name = _('Task')
         verbose_name_plural = _('Tasks')
+
 
 class Connection(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)

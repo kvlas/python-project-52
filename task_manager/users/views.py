@@ -7,6 +7,7 @@ from task_manager.mixins import UserPermissionMixin, \
 from task_manager.users.models import User
 from task_manager.users.forms import UserCreateForm, UserUpdateForm
 
+
 class UserListView(ListView):
 
     template_name = 'users/index.html'
@@ -28,6 +29,7 @@ class UserCreateView(SuccessMessageMixin, CreateView):
         'title': _('Create user'),
         'button_text': _('Register'),
     }
+
 
 class UserUpdateView(UserLoginRequiredMixin, SuccessMessageMixin,
                      UserPermissionMixin, UpdateView):

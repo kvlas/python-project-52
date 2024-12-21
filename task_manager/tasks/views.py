@@ -23,6 +23,7 @@ class TaskListView(UserLoginRequiredMixin, FilterView):
         'button_text': _('Show'),
     }
 
+
 class TaskDetailView(UserLoginRequiredMixin,
                      SuccessMessageMixin, DetailView):
     model = Task
@@ -34,6 +35,7 @@ class TaskDetailView(UserLoginRequiredMixin,
                      'btn_delete': _('Delete'),
                      'labels': labels
                      }
+
 
 class TaskCreateView(UserLoginRequiredMixin,
                      SuccessMessageMixin, CreateView):
@@ -53,7 +55,8 @@ class TaskCreateView(UserLoginRequiredMixin,
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
-    
+
+
 class TaskUpdateView(UserLoginRequiredMixin,
                      SuccessMessageMixin, UpdateView):
 

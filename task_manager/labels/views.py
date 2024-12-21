@@ -7,8 +7,8 @@ from task_manager.mixins import UserLoginRequiredMixin, DeleteProtectionMixin
 from task_manager.labels.models import Label
 from task_manager.labels.forms import LabelForm
 
-class LabelListView(UserLoginRequiredMixin, ListView):
 
+class LabelListView(UserLoginRequiredMixin, ListView):
     template_name = 'labels/index.html'
     model = Label
     context_object_name = 'labels'
@@ -16,9 +16,9 @@ class LabelListView(UserLoginRequiredMixin, ListView):
         'title': _('Labels')
     }
 
+
 class LabelCreateView(UserLoginRequiredMixin,
                       SuccessMessageMixin, CreateView):
-
     template_name = 'form.html'
     model = Label
     form_class = LabelForm
@@ -32,7 +32,6 @@ class LabelCreateView(UserLoginRequiredMixin,
 
 class LabelUpdateView(UserLoginRequiredMixin,
                       SuccessMessageMixin, UpdateView):
-
     template_name = 'form.html'
     model = Label
     form_class = LabelForm
@@ -46,7 +45,6 @@ class LabelUpdateView(UserLoginRequiredMixin,
 
 class LabelDeleteView(UserLoginRequiredMixin, DeleteProtectionMixin,
                       SuccessMessageMixin, DeleteView):
-
     template_name = 'labels/delete.html'
     model = Label
     success_url = reverse_lazy('labels')

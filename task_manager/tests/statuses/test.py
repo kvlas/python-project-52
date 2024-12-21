@@ -4,6 +4,7 @@ from django.urls import reverse
 
 from task_manager.statuses.models import Status
 
+
 class TestStatus(TestCase):
     fixtures = ['statuses.json', 'users.json']
 
