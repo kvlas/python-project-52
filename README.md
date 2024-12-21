@@ -6,7 +6,7 @@
 
 
 ### Description
-### [Task Manager] – task management system. It allows setting tasks, assigning performers, and changing their statuses. Registration and authentication are required to use the system."
+**Task Manager** – task management system. It allows setting tasks, assigning performers, and changing their statuses. Registration and authentication are required to use the system."
 
 ### Requirements
 ![Python](https://img.shields.io/badge/Python-^3.10-red.svg)
