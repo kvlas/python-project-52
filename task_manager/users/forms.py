@@ -47,7 +47,7 @@ class UserUpdateForm(UserChangeForm):
 
     def __init__(self, *args, **kwargs):
         user = kwargs.get('instance')
-        self.password_form = SetPasswordForm(user)
+        self.password_form = SetPasswordForm(user, data=kwargs.get('data'))
         super().__init__(*args, **kwargs)
         
         self.fields.update(self.password_form.fields)
@@ -60,19 +60,22 @@ class UserUpdateForm(UserChangeForm):
    
     def clean(self):
         cleaned_data = super().clean()
-        self.password_form.full_clean()
         
         if self.password_form.is_valid():
             password_cleaned_data = self.password_form.cleaned_data
-            cleaned_data.update(password_cleaned_data)
+            cleaned_data.update(password_cleaned_data)            
         else:
-            self.add_error(None, self.password_form.errors)
+            for field, errors in self.password_form.errors.items():
+                for error in errors:
+                    self.add_error(field, error)
 
         return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        self.password_form.save()
+        
+        if self.password_form.is_valid():
+            self.password_form.save()
 
         if commit:
             user.save()
