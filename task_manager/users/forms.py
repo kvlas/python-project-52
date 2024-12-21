@@ -1,6 +1,6 @@
 from django import forms
 from task_manager.users.models import User
-from django.contrib.auth.forms import UserCreationForm, UserChangeForm, PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm, SetPasswordForm
 from django.utils.translation import gettext_lazy as _
 
 
@@ -38,19 +38,20 @@ class UserUpdateForm(UserChangeForm):
         label=_("Username"),
         help_text=_("Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only."),
     )
-    password1 = forms.CharField(
-        label=_("Password"), 
-        widget=forms.PasswordInput, 
-        required=True
-    )
-    password2 = forms.CharField(
-        label=_("Confirm password"), 
-        widget=forms.PasswordInput, 
-        required=True
-    )
+
+    password_form = None
+
     class Meta(UserChangeForm.Meta):
         model = User
         fields = ('first_name', 'last_name', 'username',)
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.get('instance')
+        self.password_form = SetPasswordForm(user, *args, **kwargs)
+        super().__init__(*args, **kwargs)
+        
+        # Добавляем поля SetPasswordForm
+        self.fields.update(self.password_form.fields)
 
     def clean_username(self):
         username = self.cleaned_data['username']
@@ -60,21 +61,13 @@ class UserUpdateForm(UserChangeForm):
 
     def clean(self):
         cleaned_data = super().clean()
-        password1 = cleaned_data.get("password1")
-        password2 = cleaned_data.get("password2")
-
-        if password1 or password2:
-            if password1 != password2:
-                raise forms.ValidationError(_("The two password fields must match."))
-
+        password_cleaned_data = self.password_form.clean()
+        cleaned_data.update(password_cleaned_data)
         return cleaned_data
 
     def save(self, commit=True):
         user = super().save(commit=False)
-        new_password = self.cleaned_data.get("password1")
-
-        if new_password:
-            user.set_password(new_password)
+        self.password_form.save()
 
         if commit:
             user.save()
