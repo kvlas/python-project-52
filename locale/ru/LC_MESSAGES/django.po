@@ -250,8 +250,6 @@ msgid "Login"
 msgstr "Вход"
 
 #: task_manager/templates/navigation.html:44
-#, fuzzy
-#| msgid "Register"
 msgid "Registration"
 msgstr "Регистрация"
 
